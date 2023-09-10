@@ -1,7 +1,6 @@
-import 'package:nationyme/ui/bottom_sheets/notice/notice_sheet.dart';
-import 'package:nationyme/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:nationyme/service/dio_service.dart';
+import 'package:nationyme/service/nationalize_service.dart';
 import 'package:nationyme/ui/views/home/home_view.dart';
-import 'package:nationyme/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 // @stacked-import
@@ -9,22 +8,14 @@ import 'package:stacked_services/stacked_services.dart';
 @StackedApp(
   routes: [
     MaterialRoute(page: HomeView),
-    MaterialRoute(page: StartupView),
     // @stacked-route
   ],
   dependencies: [
-    LazySingleton(classType: BottomSheetService),
-    LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
+    LazySingleton(classType: DioService),
+    LazySingleton(classType: NationalizeService),
     // @stacked-service
   ],
-  bottomsheets: [
-    StackedBottomsheet(classType: NoticeSheet),
-    // @stacked-bottom-sheet
-  ],
-  dialogs: [
-    StackedDialog(classType: InfoAlertDialog),
-    // @stacked-dialog
-  ],
+  logger: StackedLogger(),
 )
 class App {}
